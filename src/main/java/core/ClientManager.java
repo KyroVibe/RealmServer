@@ -2,7 +2,9 @@ package core;
 
 import java.net.Socket;
 
-import neospace.*;
+import neospace.Vector3;
+import neospace.NeoReader;
+import neospace.NeoWriter;
 
 public class ClientManager implements Runnable {
 
