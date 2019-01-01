@@ -61,6 +61,8 @@ public class ClientManager implements Runnable {
             }
         }
 
+        Main.inst.managers.remove(this);
+
         try {
 
             isr.Close();
@@ -75,40 +77,20 @@ public class ClientManager implements Runnable {
 
     public void write(String dat) {
         try {
-            osw.write(dat);
-            osw.flush();
+            osw.Write(dat);
+            osw.Flush();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void write(char[] data) {
+    public String read() {
         try {
-            osw.write(data, 0, data.length);
-            osw.flush();
+            return isr.Read();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public char[] read(int length) {
-        char[] buffer = new char[length];
-        try {
-            isr.read(buffer, 0, length);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return buffer;
-    }
-
-    private String buildString(char[] a, int b) {
-        String c = "";
-
-        for (int i = 0; i < b; i++) {
-            c += a[i];
-        }
-
-        return c;
+        return null;
     }
 
 }

@@ -7,6 +7,7 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class Main {
+    public static void main(String[] args) { new Main(); }
 
     public static Main inst;
 
@@ -19,9 +20,7 @@ public class Main {
     //public ArrayList<Socket> clients;
     public ArrayList<ClientManager> managers;
 
-    public static void main(String[] args) {
-        new Main();
-    }
+    private Thread t;
 
     public Main() {
         System.out.println("--- Owens Baby Monitor v" + VERSION + " ---");
@@ -61,8 +60,9 @@ public class Main {
 
         switch (data[0].toLowerCase()) {
             case "reg":
-                
+                sender.ID = data[1];
             case "update":
+                
                 break;
         }
     }
