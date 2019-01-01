@@ -35,6 +35,22 @@ public class Main {
             //clients = new ArrayList<Socket>();
             managers = new ArrayList<ClientManager>();
 
+            t = new Thread() {
+                @Override
+                public void run() {
+                    while (!kys) {
+                        String a = "update";
+                        for (ClientManager mana : managers) {
+                            a += "|" + mana.ID + "|" + mana.GetTransformShit();
+                        }
+                        for (ClientManager mana : managers) {
+                            mana.write(a);
+                        }
+                    }
+                }
+            };
+            t.start();
+
             while (!kys) {
                 try {
                     Socket a = serverSocket.accept();
@@ -61,8 +77,9 @@ public class Main {
         switch (data[0].toLowerCase()) {
             case "reg":
                 sender.ID = data[1];
+                break;
             case "update":
-                
+                sender.SetTransformShit(data[2]);
                 break;
         }
     }

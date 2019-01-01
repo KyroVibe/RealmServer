@@ -16,6 +16,8 @@ public class ClientManager implements Runnable {
 
     private Thread t;
 
+    private Vector3 pos, rot;
+
     public ClientManager(Socket me) {
         this.me = me;
 
@@ -73,6 +75,16 @@ public class ClientManager implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    public void SetTransformShit(String a) {
+        String[] dat = a.split("%");
+        pos = new Vector3(Double.parseDouble(dat[0]), Double.parseDouble(dat[1]), Double.parseDouble(dat[2]));
+        rot = new Vector3(Double.parseDouble(dat[3]), Double.parseDouble(dat[4]), Double.parseDouble(dat[5]));
+    }
+
+    public String GetTransformShit() {
+        return pos.x + "%" + pos.y + "%" + pos.z + "%" + rot.x + "%" + rot.y + "%" + rot.z;
     }
 
     public void write(String dat) {
